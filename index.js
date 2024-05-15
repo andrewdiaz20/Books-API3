@@ -5,14 +5,14 @@ const app = express()
 app.set('view engine', 'jsx')
 app.engine('jsx', require('./express-react-views').createEngine())
 
-app.use('/places', require('./controllers/places'))
+app.use('/places', require('./controllers/places').default)
 
 app.get('/', (req, res) => {
     res.render('Hello!')
 })
 
 app.get('*', (req, res) => {
-    res.status(404).send('<h1>404 Page</h1>')
+    res.render('error404')
 })
 
 app.listen(process.env.PORT)
